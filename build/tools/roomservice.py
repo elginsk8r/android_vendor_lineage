@@ -271,11 +271,11 @@ def add_to_manifest(dependencies):
             if repo_remote := dependency.get('remote', None):
                 # aosp- remotes are only used for kernel prebuilts, thus they
                 # don't let you customize clone-depth/revision.
-                if repo_remote.startswith('aosp-'):
+                if repo_remote.startswith('aosp'):
                     project.attrib['name'] = repo_name
                     project.attrib['remote'] = repo_remote
+                    project.attrib['revision'] = repo_revision
                     project.attrib['clone-depth'] = '1'
-                    del project.attrib['revision']
             if project.attrib.get('revision', None) == get_default_revision():
                 del project.attrib['revision']
             print(
